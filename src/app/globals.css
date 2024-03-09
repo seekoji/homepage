@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--main: #0f0e0d;
+	--accent: #c6bca0;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background-color: #070706;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	background-image: radial-gradient(#0f0f0d 1px, transparent 1px);
+	background-size: 16px 16px;
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
