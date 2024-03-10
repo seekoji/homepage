@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/navbar";
 import Overlay from "./components/overlay";
 import { PageTransition, NavTransition } from "./components/transition";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -22,6 +23,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
+			<SpeedInsights/>
 			<body className={poppins.className}>
 				<Overlay />
 				<div className="flex justify-center p-4">
