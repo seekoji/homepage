@@ -38,7 +38,7 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
 				animate="enter"
 				exit="exit"
 				variants={page}
-				transition={{ type: "easeOut", duration: 0.4 }}
+				transition={{ type: "easeOut", duration: 0.2 }}
 				className="overflow-hidden"
 			>
 				<FrozenRouter>{children}</FrozenRouter>
@@ -55,7 +55,7 @@ export const NavTransition = ({ children }: { children: React.ReactNode }) => {
 				animate="enter"
 				exit="exit"
 				variants={navbar}
-				transition={{ type: "easeInOut", duration: 0.4 }}
+				transition={{ type: "easeInOut", duration: 0.2 }}
 				className="overflow-hidden"
 			>
 				<FrozenRouter>{children}</FrozenRouter>
