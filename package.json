@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@vercel/speed-insights": "^1.0.10",
 		"clsx": "^2.1.0",
 		"framer-motion": "^11.0.8",
 		"lottie-react": "^2.4.0",
