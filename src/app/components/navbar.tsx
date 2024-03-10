@@ -46,7 +46,7 @@ export default function NavBar() {
 							</div>
 						</Link>
 						<a
-							href="https://github.com/seekoji/seekoji-homepage"
+							href="https://github.com/seekoji/homepage"
 							target="_blank"
 							className="bg-[#181816] rounded-full px-4 py-[0.8px] ml-4 hover:bg-[#22221f] transition"
 						>
