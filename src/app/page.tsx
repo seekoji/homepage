@@ -1,6 +1,6 @@
 import Image from "next/image";
 import LogoImage from "../../public/logo.png";
-import { TgIcon, GithubIcon, SteamIcon } from "./components/icons";
+import { TgIcon, GithubIcon, SteamIcon, TwitchIcon } from "./components/icons";
 
 interface ExternalLinkProps {
 	href: string;
@@ -33,6 +33,11 @@ const socialLinks = [
 		href: "https://steamcommunity.com/id/seekoji/",
 		icon: <SteamIcon />,
 		label: "Steam",
+	},
+	{
+		href: "https://www.twitch.tv/seekoji",
+		icon: <TwitchIcon />,
+		label: "Twitch",
 	},
 ];
 
