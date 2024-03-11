@@ -26,7 +26,7 @@ const ExternalLink: React.FC<ExternalLinkProps> = ({ href, icon, label }) => (
 );
 
 const socialLinks = [
-	{ href: "https://t.me/bxblx", icon: <TgIcon />, label: "Telegram" },
+	{ href: "https://t.me/seekoji", icon: <TgIcon />, label: "Telegram" },
 	{
 		href: "https://github.com/seekoji",
 		icon: <GithubIcon />,
