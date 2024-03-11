@@ -12,11 +12,11 @@ function ThemeSwitcher() {
 	};
 	const [isLight, setIsLight] = useState(checkTheme);
 	function setLightTheme() {
-		setIsLight(false);
+		setIsLight(true);
 		window.localStorage.setItem("prefered-theme", "lightTheme");
 	}
 	function setDarkTheme() {
-		setIsLight(true);
+		setIsLight(false);
 		window.localStorage.setItem("prefered-theme", "darkTheme");
 	}
 	useEffect(() => {
