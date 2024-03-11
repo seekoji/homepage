@@ -3,38 +3,30 @@ import { SunIcon, MoonIcon } from "./icons";
 import { AnimatePresence, motion } from "framer-motion";
 
 function ThemeSwitcher() {
-	const storedTheme = window.localStorage.getItem("preferred-theme");
-	const checkTheme = () => {
-		if (storedTheme === "lightTheme") {
-			return true;
-		}
-		return false;
-	};
-	const [isLight, setIsLight] = useState(checkTheme());
+	const [isLight, setIsLight] = useState(false);
+
 	function setLightTheme() {
 		setIsLight(true);
-		window.localStorage.setItem("preferred-theme", "lightTheme");
 	}
+
 	function setDarkTheme() {
 		setIsLight(false);
-		window.localStorage.setItem("preferred-theme", "darkTheme");
 	}
+
 	useEffect(() => {
-		const setTheme = () => {
-			const root = window.document.documentElement;
-			if (isLight) {
-				root.classList.remove("dark");
-			} else {
-				root.classList.add("dark");
-			}
-		};
-		setTheme();
-	}, [isLight]);
+		const root = window.document.documentElement;
+
+		if (isLight === true) {
+			root.classList.remove("dark");
+		} else {
+			root.classList.add("dark");
+		}
+	});
 
 	return (
 		<AnimatePresence mode="wait" initial={false}>
 			<motion.div
-				key={isLight ? "light" : "dark"}
+				key={isLight ? "true" : "dark"}
 				initial={{ y: -20, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				exit={{ y: 20, opacity: 0 }}
@@ -44,7 +36,7 @@ function ThemeSwitcher() {
 					<button
 						type="button"
 						className={`dark-mode-switch cursor-pointer w-12 h-10
-        ${isLight ? "hidden" : ""}`}
+        ${!isLight && "hidden"}`}
 						onClick={setDarkTheme}
 					>
 						<MoonIcon />
@@ -52,7 +44,7 @@ function ThemeSwitcher() {
 					<button
 						type="button"
 						className={`light-mode-switch cursor-pointer w-12 h-10
-         ${isLight ? "" : "hidden"}`}
+         ${isLight && "hidden"}`}
 						onClick={setLightTheme}
 					>
 						<SunIcon />
@@ -62,5 +54,4 @@ function ThemeSwitcher() {
 		</AnimatePresence>
 	);
 }
-
 export default ThemeSwitcher;
