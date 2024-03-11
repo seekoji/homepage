@@ -18,7 +18,7 @@ const ExternalLink: React.FC<ExternalLinkProps> = ({ href, icon, label }) => (
 		href={href}
 		target="_blank"
 		rel="noopener noreferrer"
-		className="--button flex justify-center items-center w-full pl-5 px-3 py-3 rounded-xl transition"
+		className="flex justify-center items-center text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] w-full pl-5 px-3 py-3 rounded-xl transition"
 	>
 		<span>{icon}</span>
 		<span className="font-regular ml-5 flex-grow">{label}</span>
@@ -46,7 +46,7 @@ const socialLinks = [
 
 export default function Home() {
 	return (
-		<main className="flex justify-center mt-10 mb-20">
+		<main className="flex justify-center mt-10">
 			<div className="mt-10">
 				<div className="w-[200px] h-[200px]">
 					<Image
@@ -55,7 +55,7 @@ export default function Home() {
 						className="rounded-full"
 					/>
 				</div>
-				<h1 className="--accent text-3xl font-medium text-center mt-6">
+				<h1 className="text-[--text-accent] text-3xl font-medium text-center mt-6">
 					seekoji
 				</h1>
 				<h3 className="text-[#6B6B64] text-lg font-regular text-center">

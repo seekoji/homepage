@@ -5,14 +5,7 @@ import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
 import { HomeIcon, ProjectsIcon } from "./icons";
 import LottieLogo from "../../../public/LottieLogo.json";
-import dynamic from "next/dynamic";
 
-const DynamicThemeSwitcher = dynamic(
-	() => import("@/app/components/theme_switcher"),
-	{
-		ssr: false,
-	}
-);
 const lottieStyle = {
 	height: 32,
 };
@@ -25,8 +18,8 @@ export default function NavBar() {
 			<div className="flex items-center h-20">
 				<div
 					className={`${
-						path === href ? "--nav-selected" : ""
-					} flex text-[--accent] --nav-hover rounded-xl py-2 px-4 transition`}
+						path === href ? "bg-[--nav-selected_dark]" : ""
+					} flex text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition`}
 				>
 					{children}
 				</div>
@@ -36,9 +29,9 @@ export default function NavBar() {
 
 	return (
 		<main>
-			<div className="flex --bg-main w-full h-20 rounded-2xl px-4">
-				<div className="flex items-center justify-between w-full max-[718px]:justify-center">
-					<div className="flex items-center max-[718px]:hidden">
+			<div className="flex bg-[--bg-main_dark] w-full h-20 rounded-2xl px-4">
+				<div className="flex items-center justify-between w-full max-[630px]:justify-center">
+					<div className="flex items-center max-[630px]:hidden">
 						<Link href="/">
 							<div className="flex ml-4">
 								<div className="mr-2 pt-1">
@@ -47,7 +40,7 @@ export default function NavBar() {
 										animationData={LottieLogo}
 									/>
 								</div>
-								<h1 className="--accent --text-accent-hover text-3xl font-medium transition">
+								<h1 className="text-[--text-accent] hover:text-[--text-accent-hover_dark] text-3xl font-medium transition">
 									seekoji
 								</h1>
 							</div>
@@ -55,26 +48,26 @@ export default function NavBar() {
 						<a
 							href="https://github.com/seekoji/homepage"
 							target="_blank"
-							className="--badge rounded-full px-4 py-1 ml-4 text-sm transition"
+							className="bg-[--badge-bg_dark] hover:bg-[--badge-hover_dark] text-[--badge-text_dark] rounded-full px-4 py-1 ml-4 text-sm transition"
 						>
 							source
 						</a>
 					</div>
 					<div className="--accent flex items-center text-2xl font-medium h-full">
-						<div className="border-r-2 dark:border-[--nav-selected_dark] mr-4">
+						{/* <div className="border-r-2 dark:border-[--nav-selected_dark] mr-4">
 							<DynamicThemeSwitcher />
-						</div>
+						</div> */}
 						<NavLink href="/">
-							<div className="max-[475px]:mr-0 mr-2 pb-1 pt-1">
+							<div className="max-[370px]:mr-0 mr-2 pb-1 pt-1">
 								<HomeIcon />
 							</div>
-							<span className="max-[475px]:hidden">home</span>
+							<span className="max-[370px]:hidden">home</span>
 						</NavLink>
 						<NavLink href="/projects">
-							<div className="max-[475px]:mr-0 mr-2 pb-1 pt-1">
+							<div className="max-[370px]:mr-0 mr-2 pb-1 pt-1">
 								<ProjectsIcon />
 							</div>
-							<span className="max-[475px]:hidden">projects</span>
+							<span className="max-[370px]:hidden">projects</span>
 						</NavLink>
 					</div>
 				</div>

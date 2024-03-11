@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 			<Analytics />
 			<body className={poppins.className}>
 				<Overlay />
-				<div className="flex justify-center p-4 pb-15">
+				<div className="flex justify-center p-4 pb-20">
 					<div className="w-[900px]">
 						<div className="sticky top-4 z-40 drop-shadow-2xl dark:drop-shadow-2xl">
 							<NavTransition>

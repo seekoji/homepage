@@ -23,8 +23,8 @@ const Overlay = () => {
 
 	return showOverlay ? (
 		<div className="absolute z-0">
-			<div className="bg-gradient-to-b from-white dark:from-[#070706] from-5% to-transparent h-20 w-full fixed top-0"></div>
-			<div className="bg-gradient-to-t from-white dark:from-[#070706] from-5% to-transparent h-20 w-full fixed bottom-0"></div>
+			<div className="bg-gradient-to-b from-[#070706] from-5% to-transparent h-20 w-full fixed top-0"></div>
+			<div className="bg-gradient-to-t from-[#070706] from-5% to-transparent h-20 w-full fixed bottom-0"></div>
 		</div>
 	) : null;
 };

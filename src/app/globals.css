@@ -5,82 +5,43 @@
 :root {
 	--text-accent: #c6bca0;
 	--bg-main_dark: #0f0e0d;
-	--bg-main_light: white;
-	--bg-dots_dark: #000000;
-	--bg-dots_light: #181818;
+	--bg-dots_dark: #0e0e0c;
 	--accent_dark: #c6bca0;
-	--accent_light: black;
 	--text-accent-hover_dark: #e7dcc3;
-	--text-accent-hover_light: #80704b;
 	--badge-bg_dark: #181816;
-	--badge-bg_light: #e9e9e9;
 	--badge-text_dark: #888580;
-	--badge-text_light: black;
-	--badge-hover_dark: #b4b4b4;
-	--badge-hover_light: #ddd;
+	--badge-hover_dark: #222222;
 	--nav-selected_dark: #1d1d1a;
-	--nav-selected_light: #e9e9e9;
 	--nav-hover_dark: #121210;
-	--nav-hover_light: #f5f5f5;
 	--btn-hover_dark: #141413;
-	--btn-hover_light: #f1f1f1;
 	--icons_dark: #c6bca0;
-	--icons_light: black;
+	/* --bg-main_light: white;
+	--bg-dots_light: #181818;
+	--accent_light: black;
+	--text-accent-hover_light: #80704b;
+	--badge-bg_light: #e9e9e9;
+	--badge-text_light: black;
+	--badge-hover_light: #ddd;
+	--nav-selected_light: #e9e9e9;
+	--nav-hover_light: #f5f5f5;
+	--btn-hover_light: #f1f1f1;
+	--icons_light: black; */
 }
 
-.--bg-main {
-	@apply bg-[--bg-main_light] dark:bg-[--bg-main_dark];
-}
-
-.--accent {
-	@apply text-[--accent_light] dark:text-[--accent_dark];
-}
-
-.--nav-selected {
-	@apply bg-[--nav-selected_light] dark:bg-[--nav-selected_dark];
-}
-
-.--nav-hover {
-	@apply hover:bg-[--nav-hover_light] dark:hover:bg-[--nav-hover_dark];
-}
-
-.--text-accent-hover {
-	@apply hover:text-[--text-accent-hover_light] dark:hover:text-[--text-accent-hover_dark];
-}
-
-.--badge {
-	@apply bg-[--badge-bg_light] text-[--badge-text_light] dark:bg-[--badge-bg_dark] dark:text-[--badge-text_dark] hover:bg-[--badge-hover_light] dark:hover:bg-[--badge-hover_dark];
-}
-
-.--button {
-	@apply bg-[--bg-main_light] drop-shadow-2xl dark:drop-shadow-none hover:bg-[--btn-hover_light] text-[--accent] dark:text-[--text-accent] dark:hover:bg-[--btn-hover_dark] dark:bg-[--bg-main_dark];
+body {
+	background-color: #070706;
+	position: absolute;
+	inset: 0;
+	background-image: radial-gradient(var(--bg-dots_dark) 1px, transparent 1px);
+	background-size: 16px 16px;
 }
 
 .--svg-icon path {
-	@apply stroke-[--icons_light] dark:stroke-[--icons_dark];
+	stroke: var(--accent_dark);
 }
 
 .--svg-icon_fill {
-	@apply fill-[--icons_light] dark:fill-[--icons_dark];
-}
-
-html,
-body {
-	height: 100%;
-	@apply bg-white dark:bg-[#070706];
-	position: absolute;
-	inset: 0;
-	width: 100%;
-
-	/* I don't know how to change this color for :dark.
-
-	background-image: radial-gradient(
-		var(--bg-dots_light) 1px,
-		transparent 1px
-	); 
-	*/
-
-	background-size: 16px 16px;
+	fill: var(--accent_dark);
 }
 
 @layer utilities {
