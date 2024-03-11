@@ -10,7 +10,7 @@ export default function NotFound() {
 	const backButton = (
 		<button
 			onClick={() => router.back()}
-			className="flex flex-grow bg-[--main] hover:bg-[#141413] transition text-[--accent] py-3 px-6 rounded-xl"
+			className="--button flex flex-grow transition text-[--accent] py-3 px-6 rounded-xl"
 		>
 			<ArrowLeft />
 			Back
@@ -19,17 +19,17 @@ export default function NotFound() {
 
 	const homeButton = (
 		<Link href={"/"}>
-			<span className="flex bg-[--main] hover:bg-[#141413] transition text-[--accent] py-[13.3px] px-3 rounded-xl">
+			<span className="--button flex transition text-[--accent] py-[13.3px] px-3 rounded-xl">
 				<HomeIcon />
 			</span>
 		</Link>
 	);
 
 	return (
-		<main className="pt-[280px]">
+		<main className="pt-[280px] mb-20">
 			<div className="flex justify-center">
 				<div className="">
-					<h1 className="text-[--accent] text-4xl font-medium mb-6">
+					<h1 className="--accent text-4xl font-medium mb-6">
 						404 Not Found
 					</h1>
 					<div className="flex items-center space-x-3">
