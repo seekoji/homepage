@@ -4,43 +4,44 @@ import { AnimatePresence, motion } from "framer-motion";
 
 function ThemeSwitcher() {
 	const storedTheme = window.localStorage.getItem("prefered-theme");
+
 	const checkTheme = () => {
 		if (storedTheme === "darkTheme") {
-			return false;
+			return true;
 		}
-		return true;
+		const operatingSystemThemeDark = window.matchMedia(
+			"(prefers-color-scheme: dark)"
+		);
+		if (operatingSystemThemeDark.matches) {
+			return true;
+		}
+		return false;
 	};
+
 	const [isLight, setIsLight] = useState(checkTheme);
+
 	function setLightTheme() {
 		setIsLight(true);
 		window.localStorage.setItem("prefered-theme", "lightTheme");
 	}
+
 	function setDarkTheme() {
 		setIsLight(false);
 		window.localStorage.setItem("prefered-theme", "darkTheme");
 	}
+
 	useEffect(() => {
-		const setTheme = () => {
-			const root = window.document.documentElement;
-			const operatingSystemThemeDark = window.matchMedia(
-				"(prefers-color-scheme: dark)"
-			);
-			if (
-				storedTheme === "darkTheme" &&
-				operatingSystemThemeDark.matches
-			) {
-				root.classList.add("dark");
-			}
-			if (storedTheme === "darkTheme") {
-				root.classList.add("dark");
-			}
-			if (storedTheme === "lightTheme") {
-				root.classList.remove("dark");
-			}
-		};
-		setTheme();
+		const root = window.document.documentElement;
+
+		if (!isLight) {
+			root.classList.add("dark");
+		} else {
+			root.classList.remove("dark");
+		}
+
 		console.log(`${storedTheme} selected`);
-	}, [storedTheme]);
+	}, [isLight, storedTheme]);
+
 	return (
 		<AnimatePresence mode="wait" initial={false}>
 			<motion.div
@@ -53,16 +54,18 @@ function ThemeSwitcher() {
 				<div className="items-center">
 					<button
 						type="button"
-						className={`dark-mode-switch cursor-pointer w-12 h-10
-        ${!isLight && "hidden"}`}
+						className={`dark-mode-switch cursor-pointer w-12 h-10 ${
+							!isLight && "hidden"
+						}`}
 						onClick={setDarkTheme}
 					>
 						<MoonIcon />
 					</button>
 					<button
 						type="button"
-						className={`light-mode-switch cursor-pointer w-12 h-10
-         ${isLight && "hidden"}`}
+						className={`light-mode-switch cursor-pointer w-12 h-10 ${
+							isLight && "hidden"
+						}`}
 						onClick={setLightTheme}
 					>
 						<SunIcon />
@@ -72,4 +75,5 @@ function ThemeSwitcher() {
 		</AnimatePresence>
 	);
 }
+
 export default ThemeSwitcher;
