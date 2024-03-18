@@ -5,25 +5,44 @@ import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
 import { HomeIcon, ProjectsIcon } from "./icons";
 import LottieLogo from "../../../public/LottieLogo.json";
+import React from "react";
 
 const lottieStyle = {
 	height: 32,
 };
 
+interface TabProps {
+	href: string;
+	icon: React.ReactNode;
+	label: string;
+}
+
+const tabs = [
+	{
+		href: "/",
+		icon: <HomeIcon />,
+		label: "home",
+	},
+	{
+		href: "/projects",
+		icon: <ProjectsIcon />,
+		label: "projects",
+	},
+];
+
 export default function NavBar() {
 	const path = usePathname();
-
-	const NavLink = ({ href, children }: any) => (
-		<Link href={href}>
-			<div className="flex items-center h-20">
-				<div
-					className={`${
-						path === href ? "bg-[--nav-selected_dark]" : ""
-					} flex text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition`}
-				>
-					{children}
-				</div>
-			</div>
+	const Tab: React.FC<TabProps> = ({ href, icon, label }) => (
+		<Link
+			href={href}
+			className={`${
+				path === href ? "bg-[--nav-selected_dark]" : ""
+			} flex items-center transition text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition"`}
+		>
+			<span className="max-[370px]:mr-0 mr-2 pb-1">{icon}</span>
+			<span className="text-2xl font-medium max-[370px]:hidden">
+				{label}
+			</span>
 		</Link>
 	);
 
@@ -53,22 +72,15 @@ export default function NavBar() {
 							source
 						</a>
 					</div>
-					<div className="--accent flex items-center text-2xl font-medium h-full">
-						{/* <div className="border-r-2 dark:border-[--nav-selected_dark] mr-4">
-							<DynamicThemeSwitcher />
-						</div> */}
-						<NavLink href="/">
-							<div className="max-[370px]:mr-0 mr-2 pb-1 pt-1">
-								<HomeIcon />
-							</div>
-							<span className="max-[370px]:hidden">home</span>
-						</NavLink>
-						<NavLink href="/projects">
-							<div className="max-[370px]:mr-0 mr-2 pb-1 pt-1">
-								<ProjectsIcon />
-							</div>
-							<span className="max-[370px]:hidden">projects</span>
-						</NavLink>
+					<div className="flex">
+						{tabs.map(({ href, icon, label }) => (
+							<Tab
+								key={href}
+								href={href}
+								icon={icon}
+								label={label}
+							/>
+						))}
 					</div>
 				</div>
 			</div>

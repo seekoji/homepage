@@ -6,6 +6,7 @@ import {
 	SteamIcon,
 	TwitchIcon,
 } from "@/app/components/icons";
+import { SectionTransition } from "./components/transition";
 
 interface ExternalLinkProps {
 	href: string;
@@ -46,7 +47,7 @@ const socialLinks = [
 
 export default function Home() {
 	return (
-		<main className="flex justify-center mt-10">
+		<main className="flex justify-center mt-10 h-[670px]">
 			<div className="mt-10">
 				<div className="w-[200px] h-[200px]">
 					<Image
@@ -61,16 +62,18 @@ export default function Home() {
 				<h3 className="text-[#6B6B64] text-lg font-regular text-center">
 					trying web
 				</h3>
-				<div className="grid gap-y-3 mt-6">
-					{socialLinks.map(({ href, icon, label }) => (
-						<ExternalLink
-							key={href}
-							href={href}
-							icon={icon}
-							label={label}
-						/>
-					))}
-				</div>
+				<SectionTransition>
+					<div className="grid gap-y-3 mt-6">
+						{socialLinks.map(({ href, icon, label }) => (
+							<ExternalLink
+								key={href}
+								href={href}
+								icon={icon}
+								label={label}
+							/>
+						))}
+					</div>
+				</SectionTransition>
 			</div>
 		</main>
 	);

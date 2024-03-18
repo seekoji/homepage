@@ -25,7 +25,12 @@ const page = {
 const navbar = {
 	hidden: { opacity: 0, x: 0, y: -20 },
 	enter: { opacity: 1, x: 0, y: 0 },
-	exit: { opacity: 0, x: 0, y: 20 },
+};
+
+const section = {
+	hidden: { opacity: 0, x: 0, y: 20 },
+	enter: { opacity: 1, x: 0, y: 0 },
+	exit: { opacity: 0, x: 0, y: 10 },
 };
 
 export const PageTransition = ({ children }: { children: React.ReactNode }) => {
@@ -53,9 +58,31 @@ export const NavTransition = ({ children }: { children: React.ReactNode }) => {
 			<motion.div
 				initial="hidden"
 				animate="enter"
-				exit="exit"
 				variants={navbar}
 				transition={{ type: "easeInOut", duration: 0.2 }}
+				className="overflow-hidden"
+			>
+				<FrozenRouter>{children}</FrozenRouter>
+			</motion.div>
+		</AnimatePresence>
+	);
+};
+
+export const SectionTransition = ({
+	children,
+}: {
+	children: React.ReactNode;
+}) => {
+	const key = usePathname();
+	return (
+		<AnimatePresence mode="wait">
+			<motion.div
+				key={key}
+				initial="hidden"
+				animate="enter"
+				exit="exit"
+				variants={section}
+				transition={{ type: "easeInOut", duration: 0.3 }}
 				className="overflow-hidden"
 			>
 				<FrozenRouter>{children}</FrozenRouter>
