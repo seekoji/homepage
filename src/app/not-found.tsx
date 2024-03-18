@@ -10,7 +10,7 @@ export default function NotFound() {
 	const backButton = (
 		<button
 			onClick={() => router.back()}
-			className="text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] flex flex-grow transition text-[--accent] py-3 px-6 rounded-xl"
+			className="text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] flex flex-grow transition py-3 px-6 rounded-xl"
 		>
 			<ArrowLeft />
 			Back
@@ -19,7 +19,7 @@ export default function NotFound() {
 
 	const homeButton = (
 		<Link href={"/"}>
-			<span className="text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] flex transition text-[--accent] py-[13.3px] px-3 rounded-xl">
+			<span className="text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] flex transition py-[13.3px] px-3 rounded-xl">
 				<HomeIcon />
 			</span>
 		</Link>
