@@ -38,10 +38,13 @@ const NavBar: React.FC = () => {
 			<div
 				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition relative`}
 			>
-				<span className="max-[370px]:mr-0 mr-2 pb-1 z-10">{icon}</span>
-				<span className="text-2xl font-medium max-[370px]:hidden z-10">
-					{label}
-				</span>
+				<div className="flex items-center z-10">
+					<span className="max-[370px]:mr-0 mr-2 pb-1">{icon}</span>
+					<span className="text-2xl font-medium max-[370px]:hidden">
+						{label}
+					</span>
+				</div>
+
 				{path === href && (
 					<motion.div
 						transition={{
@@ -59,8 +62,8 @@ const NavBar: React.FC = () => {
 	return (
 		<main>
 			<div className="flex bg-[--bg-main_dark] w-full h-20 rounded-2xl px-4">
-				<div className="flex items-center justify-between w-full max-[630px]:justify-center">
-					<div className="flex items-center max-[630px]:hidden">
+				<div className="flex items-center justify-between w-full max-[650px]:justify-center">
+					<div className="flex items-center max-[650px]:hidden">
 						<Link href="/">
 							<div className="flex ml-4">
 								<div className="mr-2 pt-1">
