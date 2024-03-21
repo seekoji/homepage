@@ -1,11 +1,12 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
 import { HomeIcon, ProjectsIcon } from "./icons";
 import LottieLogo from "../../../public/LottieLogo.json";
-import React from "react";
+import { motion } from "framer-motion";
 
 const lottieStyle = {
 	height: 32,
@@ -30,19 +31,28 @@ const tabs = [
 	},
 ];
 
-export default function NavBar() {
+const NavBar: React.FC = () => {
 	const path = usePathname();
 	const Tab: React.FC<TabProps> = ({ href, icon, label }) => (
-		<Link
-			href={href}
-			className={`${
-				path === href ? "bg-[--nav-selected_dark]" : ""
-			} flex items-center transition text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition"`}
-		>
-			<span className="max-[370px]:mr-0 mr-2 pb-1">{icon}</span>
-			<span className="text-2xl font-medium max-[370px]:hidden">
-				{label}
-			</span>
+		<Link href={href}>
+			<div
+				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition relative`}
+			>
+				<span className="max-[370px]:mr-0 mr-2 pb-1 z-10">{icon}</span>
+				<span className="text-2xl font-medium max-[370px]:hidden z-10">
+					{label}
+				</span>
+				{path === href && (
+					<motion.div
+						transition={{
+							type: "easeInOut",
+							duration: 0.2,
+						}}
+						layoutId="underline"
+						className="absolute z-1 left-0 top-0 bg-[--nav-selected_dark] rounded-xl w-full h-full"
+					/>
+				)}
+			</div>
 		</Link>
 	);
 
@@ -86,4 +96,6 @@ export default function NavBar() {
 			</div>
 		</main>
 	);
-}
+};
+
+export default NavBar;
