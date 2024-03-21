@@ -35,7 +35,7 @@ const NavBar: React.FC = () => {
 	const path = usePathname();
 	const Tab: React.FC<TabProps> = ({ href, icon, label }) => (
 		<Link href={href}>
-			<div
+			<main
 				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition relative`}
 			>
 				<div className="flex items-center z-10">
@@ -55,7 +55,7 @@ const NavBar: React.FC = () => {
 						className="absolute z-1 left-0 top-0 bg-[--nav-selected_dark] rounded-xl w-full h-full"
 					/>
 				)}
-			</div>
+			</main>
 		</Link>
 	);
 
