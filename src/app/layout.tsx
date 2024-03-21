@@ -15,6 +15,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
 	title: "seekoji",
 	description: "seekoji homepage",
+	creator: "seekoji",
 };
 
 interface RootLayoutProps {
