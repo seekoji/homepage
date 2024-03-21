@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import LogoImage from "../../public/logo.png";
 import {
@@ -6,7 +8,8 @@ import {
 	SteamIcon,
 	TwitchIcon,
 } from "@/app/components/icons";
-import { SectionTransition } from "./components/transition";
+import { SectionTransition, StaggerTransition } from "./components/transition";
+import { motion } from "framer-motion";
 
 interface ExternalLinkProps {
 	href: string;
@@ -15,15 +18,17 @@ interface ExternalLinkProps {
 }
 
 const ExternalLink: React.FC<ExternalLinkProps> = ({ href, icon, label }) => (
-	<a
-		href={href}
-		target="_blank"
-		rel="noopener noreferrer"
-		className="flex justify-center items-center text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] w-full pl-5 px-3 py-3 rounded-xl transition"
-	>
-		<span>{icon}</span>
-		<span className="font-regular ml-5 flex-grow">{label}</span>
-	</a>
+	<main>
+		<a
+			href={href}
+			target="_blank"
+			rel="noopener noreferrer"
+			className="flex justify-center items-center text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] w-full pl-5 px-3 py-3 rounded-xl transition"
+		>
+			<span>{icon}</span>
+			<span className="font-regular ml-5 flex-grow">{label}</span>
+		</a>
+	</main>
 );
 
 const socialLinks = [
@@ -62,18 +67,20 @@ export default function Home() {
 				<h3 className="text-[#6B6B64] text-lg font-regular text-center">
 					trying web
 				</h3>
-				<SectionTransition>
+				<StaggerTransition key="social-links">
 					<div className="grid gap-y-3 mt-6">
 						{socialLinks.map(({ href, icon, label }) => (
-							<ExternalLink
-								key={href}
-								href={href}
-								icon={icon}
-								label={label}
-							/>
+							<SectionTransition key={href}>
+								<ExternalLink
+									key={href}
+									href={href}
+									icon={icon}
+									label={label}
+								/>
+							</SectionTransition>
 						))}
 					</div>
-				</SectionTransition>
+				</StaggerTransition>
 			</div>
 		</main>
 	);
