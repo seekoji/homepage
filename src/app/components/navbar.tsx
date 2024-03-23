@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Lottie from "lottie-react";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { HomeIcon, ProjectsIcon } from "./icons";
 import LottieLogo from "../../../public/LottieLogo.json";
-import { motion } from "framer-motion";
 
 const lottieStyle = {
 	height: 32,
@@ -16,34 +16,64 @@ interface TabProps {
 	href: string;
 	icon: React.ReactNode;
 	label: string;
+	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const tabs = [
-	{
-		href: "/",
-		icon: <HomeIcon />,
-		label: "home",
-	},
-	{
-		href: "/projects",
-		icon: <ProjectsIcon />,
-		label: "projects",
-	},
+	{ href: "/", icon: <HomeIcon />, label: "home" },
+	{ href: "/projects", icon: <ProjectsIcon />, label: "projects" },
 ];
 
 const NavBar: React.FC = () => {
 	const path = usePathname();
-	const Tab: React.FC<TabProps> = ({ href, icon, label }) => (
+	const ref = useRef(0);
+
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 650);
+		};
+
+		handleResize();
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
+
+	const Tab: React.FC<TabProps> = ({ href, icon, label, onClick }) => (
 		<Link href={href}>
-			<main
+			<div
 				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition relative`}
 			>
-				<div className="flex items-center z-10">
+				<motion.div
+					key={ref.current}
+					initial={{ scale: 1, opacity: 1 }}
+					animate={
+						path === href
+							? ref.current === 0
+								? {}
+								: { scale: [0.9, 1], opacity: [0, 1] }
+							: {}
+					}
+					whileTap={{ scale: 0.98 }}
+					transition={{
+						type: "spring",
+					}}
+					onClick={(e) => {
+						onClick && onClick(e);
+						ref.current++;
+					}}
+					className="flex items-center z-10"
+				>
 					<span className="max-[370px]:mr-0 mr-2 pb-1">{icon}</span>
 					<span className="text-2xl font-medium max-[370px]:hidden">
 						{label}
 					</span>
-				</div>
+				</motion.div>
 
 				{path === href && (
 					<motion.div
@@ -55,15 +85,32 @@ const NavBar: React.FC = () => {
 						className="absolute z-1 left-0 top-0 bg-[--nav-selected_dark] rounded-xl w-full h-full"
 					/>
 				)}
-			</main>
+			</div>
 		</Link>
 	);
 
 	return (
 		<main>
 			<div className="flex bg-[--bg-main_dark] w-full h-20 rounded-2xl px-4">
-				<div className="flex items-center justify-between w-full max-[650px]:justify-center">
-					<div className="flex items-center max-[650px]:hidden">
+				<motion.div
+					key={isMobile ? "mobile" : "desktop"}
+					initial={{ scale: 1, opacity: 1 }}
+					animate={{
+						scale: isMobile ? [0.9, 1] : [0.9, 1],
+						opacity: [0, 1],
+					}}
+					transition={{
+						type: "spring",
+					}}
+					className={`flex items-center ${
+						isMobile ? "justify-center" : "justify-between"
+					} w-full`}
+				>
+					<div
+						className={`flex items-center ${
+							isMobile ? "hidden" : ""
+						}`}
+					>
 						<Link href="/">
 							<div className="flex ml-4">
 								<div className="mr-2 pt-1">
@@ -80,6 +127,7 @@ const NavBar: React.FC = () => {
 						<a
 							href="https://github.com/seekoji/homepage"
 							target="_blank"
+							rel="noopener noreferrer"
 							className="bg-[--badge-bg_dark] hover:bg-[--badge-hover_dark] text-[--badge-text_dark] rounded-full px-4 py-1 ml-4 text-sm transition"
 						>
 							source
@@ -95,7 +143,7 @@ const NavBar: React.FC = () => {
 							/>
 						))}
 					</div>
-				</div>
+				</motion.div>
 			</div>
 		</main>
 	);
