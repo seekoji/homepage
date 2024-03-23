@@ -96,7 +96,7 @@ const NavBar: React.FC = () => {
 					key={isMobile ? "mobile" : "desktop"}
 					initial={{ scale: 1, opacity: 1 }}
 					animate={{
-						scale: isMobile ? [0.9, 1] : [0.9, 1],
+						// scale: isMobile ? [1.1, 1] : [1.1, 1],
 						opacity: [0, 1],
 					}}
 					transition={{
