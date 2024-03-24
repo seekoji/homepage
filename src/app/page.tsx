@@ -9,7 +9,6 @@ import {
 	TwitchIcon,
 } from "@/app/components/icons";
 import { SectionTransition, StaggerTransition } from "./components/transition";
-import { motion } from "framer-motion";
 
 interface ExternalLinkProps {
 	href: string;
@@ -52,8 +51,8 @@ const socialLinks = [
 
 export default function Home() {
 	return (
-		<main className="flex justify-center mt-10 h-[670px]">
-			<div className="mt-10">
+		<main className="flex justify-center mt-20 h-[670px]">
+			<div>
 				<div className="w-[200px] h-[200px]">
 					<Image
 						src={LogoImage}
