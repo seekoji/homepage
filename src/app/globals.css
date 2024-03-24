@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+	--background: #070706;
 	--text-accent: #c6bca0;
 	--bg-main_dark: #0f0e0d;
 	--bg-dots_dark: #0e0e0c;
@@ -15,6 +16,8 @@
 	--nav-hover_dark: #121210;
 	--btn-hover_dark: #141413;
 	--icons_dark: #c6bca0;
+	--selection-text: var(--bg-main_dark);
+	--selection-bg: var(--accent_dark);
 	/* --bg-main_light: white;
 	--bg-dots_light: #181818;
 	--accent_light: black;
@@ -29,11 +32,41 @@
 }
 
 body {
-	background-color: #070706;
+	background-color: var(--background);
 	position: absolute;
 	inset: 0;
 	background-image: radial-gradient(var(--bg-dots_dark) 1px, transparent 1px);
 	background-size: 16px 16px;
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--accent_dark) var(--bg-main_dark);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 17px;
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--accent_dark);
+	border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--bg-main_dark);
+	border-radius: 14px;
+	border: 3px solid var(--accent_dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--bg-main_dark);
+}
+
+::selection {
+	background-color: var(--selection-bg);
+	color: var(--selection-text);
 }
 
 .--svg-icon path {
