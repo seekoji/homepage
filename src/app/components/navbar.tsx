@@ -91,7 +91,7 @@ const NavBar: React.FC = () => {
 
 	return (
 		<main>
-			<div className="flex bg-[--bg-main_dark] w-full h-20 rounded-2xl px-4">
+			<div className="flex bg-[--bg-main_dark] w-full h-20 rounded-3xl px-4">
 				<motion.div
 					key={isMobile ? "mobile" : "desktop"}
 					initial={{ scale: 1, opacity: 1 }}
