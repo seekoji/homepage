@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import LogoImage from "../../public/logo.png";
 import {
 	TgIcon,
@@ -8,6 +9,7 @@ import {
 	SteamIcon,
 	TwitchIcon,
 } from "@/app/components/icons";
+import Button from "./components/button";
 import { SectionTransition, StaggerTransition } from "./components/transition";
 
 interface ExternalLinkProps {
@@ -15,20 +17,6 @@ interface ExternalLinkProps {
 	icon: React.ReactNode;
 	label: string;
 }
-
-const ExternalLink: React.FC<ExternalLinkProps> = ({ href, icon, label }) => (
-	<main>
-		<a
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="flex justify-center items-center text-[--text-accent] bg-[--bg-main_dark] hover:bg-[--btn-hover_dark] w-full pl-5 px-3 py-3 rounded-xl transition"
-		>
-			<span>{icon}</span>
-			<span className="font-regular ml-5 flex-grow">{label}</span>
-		</a>
-	</main>
-);
 
 const socialLinks = [
 	{ href: "https://t.me/seekoji", icon: <TgIcon />, label: "Telegram" },
@@ -70,12 +58,14 @@ export default function Home() {
 					<div className="grid gap-y-3 mt-6">
 						{socialLinks.map(({ href, icon, label }) => (
 							<SectionTransition key={href}>
-								<ExternalLink
-									key={href}
-									href={href}
-									icon={icon}
-									label={label}
-								/>
+								<Link href={href}>
+									<Button
+										key={href}
+										icon={icon}
+										label={label}
+										size="fullWidth"
+									/>
+								</Link>
 							</SectionTransition>
 						))}
 					</div>
