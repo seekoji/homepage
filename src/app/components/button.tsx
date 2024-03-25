@@ -33,14 +33,16 @@ const Button: React.FC<ButtonProps> = ({
 			type={type}
 			disabled={disabled}
 		>
-			<span
-				className={`
-			${iconPosition ? "ml-4" : "mr-4"}
-			${iconPosition === "center" ? "mr-0 ml-0" : ""}`}
-			>
-				{icon}
-			</span>
-			<span className="font-regular">{label}</span>
+			<span>{icon}</span>
+			{label && (
+				<span
+					className={`${
+						iconPosition === "right" ? "mr-4" : "ml-4"
+					} font-regular`}
+				>
+					{label}
+				</span>
+			)}
 		</button>
 	);
 };

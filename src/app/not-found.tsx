@@ -23,7 +23,6 @@ export default function NotFound() {
 				onClick={() => router.back()}
 				icon={<HomeIcon />}
 				size="small"
-				iconPosition="center"
 			/>
 		</Link>
 	);
