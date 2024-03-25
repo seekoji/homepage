@@ -12,12 +12,6 @@ import {
 import Button from "./components/button";
 import { SectionTransition, StaggerTransition } from "./components/transition";
 
-interface ExternalLinkProps {
-	href: string;
-	icon: React.ReactNode;
-	label: string;
-}
-
 const socialLinks = [
 	{ href: "https://t.me/seekoji", icon: <TgIcon />, label: "Telegram" },
 	{

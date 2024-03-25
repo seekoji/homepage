@@ -18,12 +18,8 @@ export default function NotFound() {
 	);
 
 	const homeButton = (
-		<Link href={"/"}>
-			<Button
-				onClick={() => router.back()}
-				icon={<HomeIcon />}
-				size="small"
-			/>
+		<Link href="/">
+			<Button icon={<HomeIcon />} size="small" />
 		</Link>
 	);
 
