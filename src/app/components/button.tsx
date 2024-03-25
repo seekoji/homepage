@@ -35,8 +35,8 @@ const Button: React.FC<ButtonProps> = ({
 		>
 			<span
 				className={`
-			${iconPosition === "right" ? "ml-4" : "mr-4"}
-			${iconPosition === "center" ? "mr-0" : ""}`}
+			${iconPosition ? "ml-4" : "mr-4"}
+			${iconPosition === "center" ? "mr-0 ml-0" : ""}`}
 			>
 				{icon}
 			</span>
