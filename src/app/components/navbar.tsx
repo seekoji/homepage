@@ -47,7 +47,7 @@ const NavBar: React.FC = () => {
 	const Tab: React.FC<TabProps> = ({ href, icon, label, onClick }) => (
 		<Link href={href}>
 			<div
-				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl py-2 px-4 transition relative`}
+				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl h-12 px-4 transition relative`}
 			>
 				<motion.div
 					key={ref.current}
