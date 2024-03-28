@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, HomeIcon } from "./components/icons";
-import Button from "./components/button";
+import Button from "./components/ui/button";
 
 export default function NotFound() {
 	const router = useRouter();

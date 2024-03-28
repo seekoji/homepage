@@ -9,7 +9,7 @@ import {
 	SteamIcon,
 	TwitchIcon,
 } from "@/app/components/icons";
-import Button from "./components/button";
+import Button from "./components/ui/button";
 import { SectionTransition, StaggerTransition } from "./components/transition";
 
 const socialLinks = [

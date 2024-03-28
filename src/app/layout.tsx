@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/app/components/navbar";
-import Overlay from "@/app/components/overlay";
+import NavBar from "@/app/components/ui/navbar";
+import Overlay from "@/app/components/ui/overlay";
 import { PageTransition, NavTransition } from "@/app/components/transition";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
