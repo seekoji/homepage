@@ -5,6 +5,7 @@
 :root {
 	--background: #070706;
 	--text-accent: #c6bca0;
+	--placeholder_dark: #88858079;
 	--bg-main_dark: #0f0e0d;
 	--bg-dots_dark: #0e0e0c;
 	--accent_dark: #c6bca0;
@@ -15,6 +16,10 @@
 	--nav-selected_dark: #1d1d1a;
 	--nav-hover_dark: #121210;
 	--btn-hover_dark: #141413;
+	--input-bg_dark: #0c0b0b98;
+	--input-hover_dark: #11111198;
+	--input-focused_dark: #16161698;
+	--input-outline_dark: #74746b0e;
 	--icons_dark: #c6bca0;
 	--selection-text: var(--bg-main_dark);
 	--selection-bg: var(--accent_dark);
