@@ -52,7 +52,7 @@ export default function Home() {
 					<div className="grid gap-y-3 mt-6">
 						{socialLinks.map(({ href, icon, label }) => (
 							<SectionTransition key={href}>
-								<Link href={href}>
+								<Link href={href} target="blank">
 									<Button
 										key={href}
 										icon={icon}
