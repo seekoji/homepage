@@ -8,9 +8,12 @@ import { motion } from "framer-motion";
 import { HomeIcon, ProjectsIcon } from "../icons";
 import LottieLogo from "../../../../public/LottieLogo.json";
 
-const lottieStyle = {
-	height: 32,
-};
+const lottieStyle = { height: 32 };
+
+const tabs = [
+	{ href: "/", icon: <HomeIcon />, label: "home" },
+	{ href: "/projects", icon: <ProjectsIcon />, label: "projects" },
+];
 
 interface TabProps {
 	href: string;
@@ -19,35 +22,18 @@ interface TabProps {
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const tabs = [
-	{ href: "/", icon: <HomeIcon />, label: "home" },
-	{ href: "/projects", icon: <ProjectsIcon />, label: "projects" },
-];
-
-const NavBar: React.FC = () => {
+const Tab: React.FC<TabProps> = ({ href, icon, label, onClick }) => {
 	const path = usePathname();
 	const ref = useRef(0);
 
-	const [isMobile, setIsMobile] = useState(false);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 650);
-		};
-
-		handleResize();
-
-		window.addEventListener("resize", handleResize);
-
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
-
-	const Tab: React.FC<TabProps> = ({ href, icon, label, onClick }) => (
+	return (
 		<Link href={href}>
 			<div
-				className={`flex items-center text-[--text-accent] hover:bg-[--nav-hover_dark] rounded-xl h-12 px-4 transition relative`}
+				className="flex items-center text-[--accent] hover:bg-[--nav-hover] rounded-xl h-12 px-4 transition relative"
+				onClick={(e) => {
+					if (onClick) onClick(e);
+					ref.current++;
+				}}
 			>
 				<motion.div
 					key={ref.current}
@@ -60,13 +46,7 @@ const NavBar: React.FC = () => {
 							: {}
 					}
 					whileTap={{ scale: 0.98 }}
-					transition={{
-						type: "spring",
-					}}
-					onClick={(e) => {
-						onClick && onClick(e);
-						ref.current++;
-					}}
+					transition={{ type: "spring" }}
 					className="flex items-center z-10"
 				>
 					<span className="max-[370px]:mr-0 mr-2 pb-1">{icon}</span>
@@ -77,21 +57,30 @@ const NavBar: React.FC = () => {
 
 				{path === href && (
 					<motion.div
-						transition={{
-							type: "easeInOut",
-							duration: 0.2,
-						}}
+						transition={{ type: "easeInOut", duration: 0.2 }}
 						layoutId="underline"
-						className="absolute z-1 left-0 top-0 bg-[--nav-selected_dark] rounded-xl w-full h-full"
+						className="absolute z-1 left-0 top-0 bg-[--nav-selected] rounded-xl w-full h-full"
 					/>
 				)}
 			</div>
 		</Link>
 	);
+};
+
+const NavBar: React.FC = () => {
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth <= 650);
+		handleResize();
+
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	return (
 		<main>
-			<div className="flex bg-[--bg-main_dark] w-full h-20 rounded-3xl px-4">
+			<div className="flex bg-[--bg-secondary] w-full h-20 rounded-3xl px-4">
 				<motion.div
 					key={isMobile ? "mobile" : "desktop"}
 					initial={false}
@@ -99,40 +88,36 @@ const NavBar: React.FC = () => {
 						scale: isMobile ? [0.9, 1] : [0.9, 1],
 						opacity: [0, 1],
 					}}
-					transition={{
-						type: "easeInOut",
-					}}
+					transition={{ type: "easeInOut" }}
 					className={`flex items-center ${
 						isMobile ? "justify-center" : "justify-between"
 					} w-full`}
 				>
-					<div
-						className={`flex items-center ${
-							isMobile ? "hidden" : ""
-						}`}
-					>
-						<Link href="/">
-							<div className="flex ml-4">
-								<div className="mr-2 pt-1">
-									<Lottie
-										style={lottieStyle}
-										animationData={LottieLogo}
-									/>
+					{!isMobile && (
+						<div className="flex items-center">
+							<Link href="/">
+								<div className="flex ml-4">
+									<div className="mr-2 pt-1">
+										<Lottie
+											style={lottieStyle}
+											animationData={LottieLogo}
+										/>
+									</div>
+									<h1 className="text-[--accent] hover:text-[--text-hover] text-3xl font-medium transition">
+										seekoji
+									</h1>
 								</div>
-								<h1 className="text-[--text-accent] hover:text-[--text-accent-hover_dark] text-3xl font-medium transition">
-									seekoji
-								</h1>
-							</div>
-						</Link>
-						<a
-							href="https://github.com/seekoji/homepage"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="bg-[--badge-bg_dark] hover:bg-[--badge-hover_dark] text-[--badge-text_dark] rounded-full px-4 py-1 ml-4 text-sm transition"
-						>
-							source
-						</a>
-					</div>
+							</Link>
+							<a
+								href="https://github.com/seekoji/homepage"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="bg-[--badge-bg] hover:bg-[--badge-hover] text-[--badge-text] rounded-full px-4 py-1 ml-4 text-sm transition"
+							>
+								source
+							</a>
+						</div>
+					)}
 					<div className="flex">
 						{tabs.map(({ href, icon, label }) => (
 							<Tab

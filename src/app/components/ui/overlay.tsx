@@ -14,6 +14,8 @@ const Overlay = () => {
 			setShowOverlay(isScrollable);
 		};
 
+		handleScroll();
+
 		window.addEventListener("scroll", handleScroll);
 
 		return () => {
@@ -21,12 +23,14 @@ const Overlay = () => {
 		};
 	}, []);
 
-	return showOverlay ? (
+	if (!showOverlay) return null;
+
+	return (
 		<div className="absolute z-0">
-			<div className="bg-gradient-to-b from-[#070706] from-5% to-transparent h-20 w-full fixed top-0"></div>
-			<div className="bg-gradient-to-t from-[#070706] from-5% to-transparent h-20 w-full fixed bottom-0"></div>
+			<div className="bg-gradient-to-b from-[--overlay] from-5% to-transparent h-20 w-full fixed top-0"></div>
+			<div className="bg-gradient-to-t from-[--overlay] from-5% to-transparent h-20 w-full fixed bottom-0"></div>
 		</div>
-	) : null;
+	);
 };
 
 export default Overlay;

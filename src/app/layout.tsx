@@ -25,13 +25,15 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
-			<SpeedInsights />
-			<Analytics />
+			<head>
+				<SpeedInsights />
+				<Analytics />
+			</head>
 			<body className={poppins.className}>
 				<Overlay />
 				<div className="flex justify-center p-4 h-screen">
 					<div className="w-[900px] h-full">
-						<div className="sticky top-4 z-40 drop-shadow-2xl dark:drop-shadow-2xl">
+						<div className="sticky top-4 z-40 drop-shadow-2xl">
 							<NavTransition>
 								<NavBar />
 							</NavTransition>

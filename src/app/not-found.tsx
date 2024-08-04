@@ -8,31 +8,27 @@ import Button from "./components/ui/button";
 export default function NotFound() {
 	const router = useRouter();
 
-	const backButton = (
-		<Button
-			onClick={() => router.back()}
-			label="back"
-			icon={<ArrowLeft />}
-			size="fullWidth"
-		/>
-	);
-
-	const homeButton = (
-		<Link href="/">
-			<Button icon={<HomeIcon />} size="small" />
-		</Link>
-	);
-
 	return (
 		<main className="pt-[280px] mb-20">
 			<div className="flex justify-center">
-				<div className="">
-					<h1 className="text-[--text-accent] text-4xl font-medium mb-6">
+				<div>
+					<h1 className="text-[--accent] text-4xl font-medium mb-6">
 						404 not found
 					</h1>
 					<div className="flex items-center space-x-3">
-						{backButton}
-						{homeButton}
+						<Button
+							onClick={() => router.back()}
+							label="back"
+							icon={<ArrowLeft />}
+							size="fullWidth"
+						/>
+						<Link href="/">
+							<Button
+								icon={<HomeIcon />}
+								iconPosition="center"
+								size="small"
+							/>
+						</Link>
 					</div>
 				</div>
 			</div>
